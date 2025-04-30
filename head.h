@@ -57,7 +57,6 @@ void findMenu(const Student* student_head);
 //信息管理
 Student* createStudent(const char* name, const char* id);	//创建新学生信息
 void addStudent(Student** head, Student* new_student);		//添加学生信息
-void inputStudent(Student** head);							//插入学生信息
 void deleteStudent(Student** head,const char* id);			//删除学生信息
 void modifyStudent(Student* head, const char* id);			//修改学生信息
 
@@ -65,17 +64,20 @@ void modifyStudent(Student* head, const char* id);			//修改学生信息
 
 
 //排序显示学生信息
-void sortStudent(Student* head);			//学号排序
-void upList(const Student* head);			//学号升序
-void downList(const Student* head);			//学号降序
+Student* sortStudent(Student* head);			//学号排序
+//void upList(const Student* head);			//学号升序
+//void downList(const Student* head);			//学号降序
 
+void swap(Student* a, Student* b);			//交换两个节点的数据
 void scoreList(const Student* head);		//成绩排序
 
 
 //排序与成绩统计
 void sortBySingleSubject(Student* head, int number);		//单科成绩排序
 void sortByTotal(Student* head);							//总成绩排序
-void calculateSubjectStats(Student* head);
+void calculateSubjectStats(const Student* head);					//成绩统计
+
+
 //查询学生信息函数
 void findStudentByName_pre(Student* head, char* name);		//精确查找
 void findStudentByName_obs(Student* head, char* name);		//模糊查找

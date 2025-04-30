@@ -31,7 +31,12 @@ Student* createStudent(const char* name, const char* id) {
 	//初始化用户信息
 	strcpy(new_student->name, name);
 	strcpy(new_student->id, id);
-
+	new_student->average = 0;
+	new_student->total = 0;
+	for (int i = 0; i < MAX_SUBJECTS; i++) {
+		new_student->score[i] = 0;
+	}
+	new_student->next = NULL;
 
 	return new_student;
 }
@@ -92,10 +97,33 @@ void deleteStudent(Student** head, const char* id) {
 
 //修改学生信息
 void modifyStudent(Student* head, const char* id) {
+	//参数有效性检查
+	if (head == NULL || id == NULL) {
+		printf("错误：无效的参数\n");
+		return;
+	}
+
 	Student* current = head;
 	while (current != NULL) {
-		if(strcmp(current->))
+		if (strcmp(current->id, id) == 0) {
+			printf("请输入新的姓名：");
+			scanf("%s", current->name);
+			printf("请输入各科成绩：");
+			for (int i = 0; i < MAX_SUBJECTS; i++) {
+				scanf("%lf", &current->score[i]);
+			}
+			//重新计算总分和平均分
+			current->total = 0;
+			for (int i = 0; i < MAX_SUBJECTS; i++) {
+				current->total += current->score[i];
+			}
+			current->average = current->total / MAX_SUBJECTS;
+			printf("学生信息修改成功\n");
+			return;
+		}
+		current = current->next;
 	}
+	printf("未找到学号为%s的学生\n", id);
 }
 
 

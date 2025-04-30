@@ -1,5 +1,6 @@
 #include"head.h"
 
+//从文件中加载学生信息
 Student* loadStudents() {
 	Student* head = NULL;
 	FILE* file = fopen("data/students.txt", "r");
@@ -23,7 +24,7 @@ Student* loadStudents() {
 
 }
 
-
+//保存信息至文件
 void saveStudents(const Student* head) {
 	FILE* file=fopen("data/students.txt","w");
 	if (file == NULL) {
